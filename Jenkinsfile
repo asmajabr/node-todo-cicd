@@ -12,7 +12,7 @@ pipeline {
         stage("build and test"){
             steps{
                 sh "docker build -t asmajaradat/demoimage ."
-                echo 'Code has been built.'            }
+                echo 'Code has been built..'            }
         }
         stage("scan image"){
             steps{
