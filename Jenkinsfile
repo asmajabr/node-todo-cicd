@@ -11,7 +11,7 @@ pipeline {
         }
         stage("build and test"){
             steps{
-                sh "docker build -t asmajaradat/demoimage1 ."
+                sh "docker build -t asmajaradat/demoimage2 ."
                 echo 'Code has been built'
             }
         }
@@ -24,8 +24,8 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId:"dockerhub",passwordVariable:"dockerhubPass",usernameVariable:"dockerhubUser")]){
                 sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPass}"
-                sh "docker tag asmajaradat/demoimage1 asmajaradat/demoimage1"
-                sh "docker push asmajaradat/demoimag1"
+                sh "docker tag asmajaradat/demoimage1 asmajaradat/demoimage2"
+                sh "docker push asmajaradat/demoimag2"
                 echo 'image push done'
                 }
             }
