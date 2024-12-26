@@ -6,18 +6,18 @@ pipeline {
         stage("code"){
             steps{
                 git url: "https://github.com/asmajabr/node-todo-cicd.git", branch: "master"
-                echo 'bhaiyya code clone ho gaya'
+                echo 'The Code got cloned'
             }
         }
         stage("build and test"){
             steps{
                 sh "docker build -t asmajaradat/demoimage ."
-                echo 'code build bhi ho gaya'
+                echo 'Code has been built'
             }
         }
         stage("scan image"){
             steps{
-                echo 'image scanning ho gayi'
+                echo 'image has been scanned'
             }
         }
         stage("push"){
@@ -26,14 +26,14 @@ pipeline {
                 sh "docker login -u ${env.dockerhubUser} -p ${env.dockerhubPass}"
                 sh "docker tag asmajaradat/demoimage asmajaradat/demoimage"
                 sh "docker push asmajaradat/demoimage"
-                echo 'image push ho gaya'
+                echo 'image push done'
                 }
             }
         }
         stage("deploy"){
             steps{
                 sh "docker-compose down && docker-compose up -d"
-                echo 'deployment ho gayi'
+                echo 'deployment done'
             }
         }
     }
